@@ -16,7 +16,7 @@ module.exports = app =>{
         if(user){
             bcrypt.compare(req.body.password,user.password,(err,isMatch)=>{
                 if(err || !isMatch){
-                    return res.status(401).send()
+                    return res.status(401).send("A Senha Informada é invalida")
                 }
                 const payload = {id:user.id}
                 res.json({
@@ -26,9 +26,9 @@ module.exports = app =>{
                 }) 
             })
         }else{
-            res.status(400).send("problema com login do usuário")
+            res.status(400).send("Usuário não cadastrado!")
         }
-        
+         
     }
 return {signin}
 }
